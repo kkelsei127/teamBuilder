@@ -10,11 +10,12 @@ const fs = require('fs');
 const prompts = [{
     type: 'input',
     message: "Welcome to the team builder! First things first, what is the Team Manager's name?",
-    name: 'Manager'
+    name: 'ManagerName'
 }, {
-    type: 'input',
+    type: 'number',
     message: "What is the Team Manager's Employee ID, please enter integers only.",
-    name: 'ManagerID'
+    name: 'ManagerID',
+    // validate: 'Please enter numbers only.'
 },{
     type: 'input',
     message: "What is the Team Manager's office number?",
@@ -28,14 +29,17 @@ const prompts = [{
     message: "What team member would you like to add next? Please use arrow keys to continue.",
     choices: ['Engineer', 'Intern', 'None'],
     name:'NextEmployee'
-}, {
+}]
+
+const engineerPrompts = [{
     type:'input',
     message: "What is the Engineer's name?",
     name: 'EngineerName'
 }, {
-    type:'input',
+    type:'number',
     message:"What is the Engineer's Employee ID, please enter integers only.",
-    name:'EngineerID'
+    name:'EngineerID',
+    // validate: 'Please enter numbers only.'
 }, {
     type:'input',
     message:"What is the Engineer's office number?",
@@ -48,14 +52,22 @@ const prompts = [{
     type:'input',
     message:"What is the Engineer's GitHub username?",
     name:'EngineerGitHub'
-}, {
+},{
+    type: 'list',
+    message: "What team member would you like to add next? Please use arrow keys to continue.",
+    choices: ['Engineer', 'Intern', 'None'],
+    name:'NextEmployee'
+}]
+
+const internPrompts = [{
     type:'input',
     message: "What is the Intern's name?",
     name: 'InternName'
 }, {
-    type:'input',
+    type:'number',
     message:"What is the Intern's Employee ID, please enter integers only.",
-    name:'InternID'
+    name:'InternID',
+    // validate: 'Please enter numbers only.'
 }, {
     type:'input',
     message:"What is the Intern's office number?",
@@ -68,8 +80,12 @@ const prompts = [{
     type:'input',
     message:"What is the Intern's school?",
     name:'InternSchool'
-}, 
-]
+},{
+    type: 'list',
+    message: "What team member would you like to add next? Please use arrow keys to continue.",
+    choices: ['Engineer', 'Intern', 'None'],
+    name:'NextEmployee'
+}]
 
 function createTemplate(data){
     return `<!DOCTYPE html>
@@ -82,32 +98,68 @@ function createTemplate(data){
 			rel="stylesheet"
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 		/>
-		<title>EXAMPLE</title>
+		<title>Team Builder</title>
 	</head>
 	<body class="text-center">
-	<h1 class="text-success"> ${data.name}</h1>
-	<h4> ${data.location}</h4>
-	<div>
-		<p> ${data.bio}</p>
-	</div>
-	<div>
-		<h5>Contact Me!</h5>
-		${data.linkedIn}
-		${data.GitHub}
-	</div>
-	<p class="text-danger"> coded by a hungry student</p>
-		
+    <header>
+        <h1 class="text-danger">Welcome to my Team!</h1>
+    </header>
+    <main>
+        <div class="row container justify-content-end col-9">
+            <div class="col-sm">
+                <h2 class="text-success"> ${data.ManagerName}</h2>
+                <h4>${data.ManagerID}</h4>
+                <div>
+                    <h5>Contact Me!</h5>
+                    <a href="mailto:${data.ManagerEmail}?subject=We have a problem!"
+                        target="_blank">${data.ManagerEmail}</a>
+                    <p>My office is located here: ${data.ManagerOffice}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row container justify-content-end col-9">
+            <div class="col-sm">
+                <h2 class="text-success"> ${data.EngineerName}</h2>
+                <h4>${data.EngineerID}</h4>
+                <div>
+                    <h5>Contact Me!</h5>
+                    <a href="mailto:${data.EngineerEmail}?subject=Help needed!"
+                        target="_blank">${data.EngineerEmail}</a>
+                    <p>${data.EngineerGitHub}</p>
+                    <p>My office is located here: ${data.EngineerOffice}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row container justify-content-end col-9">
+            <div class="col-sm">
+                <h2 class="text-success"> ${data.InternName}</h2>
+                <h4>${data.InternID}</h4>
+                <div>
+                    <h5>Contact Me!</h5>
+                    <a href="mailto:${data.InternEmail}?subject=You're doing great, sweetie!"
+                        target="_blank">${data.InternEmail}</a>
+                    <p>I currently study at ${data.InternSchool}</p>
+                    <p>My office is located here: ${data.InternOffice}</p>
+                </div>
+            </div>
+        </div>
+    </main>
 	</body>
 	</html>
-
 `
 }
 
 
 function init(){
     inquirer.prompt(prompts)
+    
     .then((data) => {
         console.log(data)
+        function (data) {if (data.NextEmployee === "Engineer") {
+            inquirer.prompt(engineerPrompts)} else if
+            (data.NextEmployee === "Intern") {
+                    inquirer.prompt(internPrompts)
+                }}
         fs.writeFile('index.html', createTemplate(data), ()=> {
             console.log('success')
         })
