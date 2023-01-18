@@ -1,8 +1,11 @@
 const Employee = require('./lib/Employee');
+const Manager = require('./lib/Manager');
+const Engineer= require('./lib/Engineer');
+const Intern = require('./lib/Intern');
 const inquirer = require('inquirer');
 const fs = require('fs');
 
-
+const teamArray = []
 
 
 // ask questions
@@ -24,11 +27,6 @@ const prompts = [{
     type: 'input',
     message: "What is the Team Manager's email?",
     name: 'ManagerEmail'
-},{
-    type: 'list',
-    message: "What team member would you like to add next? Please use arrow keys to continue.",
-    choices: ['Engineer', 'Intern', 'None'],
-    name:'NextEmployee'
 }]
 
 const engineerPrompts = [{
@@ -52,11 +50,6 @@ const engineerPrompts = [{
     type:'input',
     message:"What is the Engineer's GitHub username?",
     name:'EngineerGitHub'
-},{
-    type: 'list',
-    message: "What team member would you like to add next? Please use arrow keys to continue.",
-    choices: ['Engineer', 'Intern', 'None'],
-    name:'NextEmployee'
 }]
 
 const internPrompts = [{
@@ -80,12 +73,58 @@ const internPrompts = [{
     type:'input',
     message:"What is the Intern's school?",
     name:'InternSchool'
-},{
-    type: 'list',
-    message: "What team member would you like to add next? Please use arrow keys to continue.",
-    choices: ['Engineer', 'Intern', 'None'],
-    name:'NextEmployee'
-}]
+},]
+function createManager(){
+    inquirer.prompt(prompts)
+    .then(data => {
+        //create new manager instance here using answers from manager prompts
+        const instance = new Manager(data.ManagerName, data.ManagerID, data.ManagerEmail, data.ManagerOffice)
+        //push new manager instance into Team array
+        teamArray.push(instance)
+        console.log(teamArray)
+        selectEmployee()
+    })
+}
+
+function createEngineer(){
+    inquirer.prompt(engineerPrompts)
+    .then(data => {
+        //create new manager instance here using answers from manager prompts
+        //push new manager instance into Team array
+        selectEmployee()
+    })
+}
+
+
+function createIntern(){
+    inquirer.prompt(internPrompts)
+    .then(data => {
+        //create new manager instance here using answers from manager prompts
+        //push new manager instance into Team array
+        selectEmployee()
+    })
+}
+
+function selectEmployee(){
+    inquirer.prompt([
+        {
+            type: 'list',
+            message: "What team member would you like to add next? Please use arrow keys to continue.",
+            choices: ['Engineer', 'Intern', 'None'],
+            name:'NextEmployee'
+        }
+    ]).then(data => {
+        if(data.NextEmployee === "Engineer") {
+            createEngineer()
+        } else if(data.NextEmployee === "Intern"){
+            createIntern()
+        }else {
+            fs.writeFile('index.html', createTemplate(teamArray), ()=> {
+                            console.log('success')
+                        })
+        }
+    })
+}
 
 function createTemplate(data){
     return `<!DOCTYPE html>
@@ -149,33 +188,30 @@ function createTemplate(data){
 `
 }
 
-
-function init(){
-    inquirer.prompt(prompts)
+createManager()
+// function init(){
+//     inquirer.prompt(prompts)
     
-    .then((data) => {
-        console.log(data)
-        function (data) {if (data.NextEmployee === "Engineer") {
-            inquirer.prompt(engineerPrompts)} else if
-            (data.NextEmployee === "Intern") {
-                    inquirer.prompt(internPrompts)
-                }}
-        fs.writeFile('index.html', createTemplate(data), ()=> {
-            console.log('success')
-        })
-    })
-    .catch((error) => {
-        if (error.isTtyError){
-            console.log(error)
-        } else {
-            console.log(error)
-        }
-    })
-}
+//     .then((data) => {
+//         console.log(data)
+//         function (data) {if (data.NextEmployee === "Engineer") {
+//             inquirer.prompt(engineerPrompts)} else if
+//             (data.NextEmployee === "Intern") {
+//                     inquirer.prompt(internPrompts)
+//                 }}
+//         fs.writeFile('index.html', createTemplate(data), ()=> {
+//             console.log('success')
+//         })
+//     })
+//     .catch((error) => {
+//         if (error.isTtyError){
+//             console.log(error)
+//         } else {
+//             console.log(error)
+//         }
+//     })
+// }
 
-init()
-
-// instantiate Employee based on inputted data
-
+// init()
 
 // build html
