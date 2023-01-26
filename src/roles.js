@@ -30,7 +30,7 @@ function createManager(manager){
                     <span>ID: ${manager.getId()}</span>
                 </div>
                 <div class="card-content">
-                    <span>Email:<a class='black-text' href='mailto:${manager.getEmail()}'>${manager.getEmail()}</a></span>
+                    <span>Email:<a class='black-text' href='mailto:${manager.getEmail()}?subject=We have a problem!'>${manager.getEmail()}</a></span>
                 </div>
                 <div class="card-content">
                     <span>GitHub:<a href='https://github.com/${manager.getOfficeNumber()}' target='_blank' rel='noreferrer'> ${manager.getOfficeNumber()}</a></span>
@@ -56,7 +56,7 @@ function createEngineer(engineer){
                     <span>ID: ${engineer.getId()}</span>
                 </div>
                 <div class="card-content">
-                    <span>Email:<a class='black-text' href='mailto:${engineer.getEmail()}'> ${engineer.getEmail()}</a></span>
+                    <span>Email:<a class='black-text' href='mailto:${engineer.getEmail()}?subject=Help needed!'> ${engineer.getEmail()}</a></span>
                 </div>
                 <div class="card-content">
                     <span>GitHub:<a href='https://github.com/${engineer.getGithub()}' target='_blank' rel='noreferrer'> ${engineer.getGithub()}</a></span>
@@ -81,7 +81,7 @@ function createIntern(intern){
                     <span>ID: ${intern.getId()}</span>
                 </div>
                 <div class="card-content">
-                    <span>Email:<a class='black-text' href='mailto:${intern.getEmail()}'> ${intern.getEmail()}</a></span>
+                    <span>Email:<a class='black-text' href='mailto:${intern.getEmail()}?subject=You're doing great, sweetie!'> ${intern.getEmail()}</a></span>
                 </div>
                 <div class="card-content">
                     <span>GitHub:<a href='https://github.com/${intern.getSchool()}' target='_blank' rel='noreferrer'> ${intern.getGithub()}</a></span>
