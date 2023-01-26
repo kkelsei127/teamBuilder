@@ -20,19 +20,19 @@ function mapEmployee(teamArray, role, createRole){
 //create cards dynamically for manager
 function createManager(manager){
     return `
-    <div class="col s4 z-depth-5">
+    <div class="col s6 offset-s3">
         <div class="card amber darken-2 z-depth-5">
             <div class="card content orange darken-4 center-align">
                 <h2 class="padding-top card-title orange darken-4">${manager.getName()}</h2>
             </div>
             <div class="card-content">
-                <div class="card-content">
+                <div class="card-content center-align">
                     <span>ID: ${manager.getId()}</span>
                 </div>
-                <div class="card-content">
+                <div class="card-content center-align">
                     <span>Email:<a href='mailto:${manager.getEmail()}?subject=We have a problem!'>${manager.getEmail()}</a></span>
                 </div>
-                <div class="card-content">
+                <div class="card-content center-align">
                     <span>Office: ${manager.getOfficeNumber()}</span>
                 </div>
             </div>
@@ -46,7 +46,7 @@ function createManager(manager){
 //create cards for engineer dynamically
 function createEngineer(engineer){
     return `
-    <div class="col s4 z-depth-5">
+    <div class="col s4">
         <div class="card amber darken-2 z-depth-5">
             <div class="card content orange darken-4 center-align">
                 <h2 class="padding-top card-title orange darken-4">${engineer.getName()}</h2>
