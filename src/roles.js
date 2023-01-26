@@ -1,5 +1,6 @@
 const teamArray = require('../index')
 
+//define employee roles
 const empRoles = {
     manager: 'Manager',
     engineer: 'Engineer',
@@ -42,23 +43,23 @@ function createManager(manager){
     `
 }
 
-//create cards for engineer
+//create cards for engineer dynamically
 function createEngineer(engineer){
     return `
     <div class="col s4">
         <div class="card cyan lighten-3">
             <div class="card content teal lighten-5 center-align">
-                <h2 class="padding-top card-title">${engineer.name}</h2>
+                <h2 class="padding-top card-title">${engineer.getName()}</h2>
             </div>
             <div class="card-content">
                 <div class="card-content">
-                    <span>ID: ${engineer.id}</span>
+                    <span>ID: ${engineer.getId()}</span>
                 </div>
                 <div class="card-content">
-                    <span>Email:<a class='black-text' href='mailto:${engineer.email}'> ${engineer.email}</a></span>
+                    <span>Email:<a class='black-text' href='mailto:${engineer.getEmail()}'> ${engineer.getEmail()}</a></span>
                 </div>
                 <div class="card-content">
-                    <span>GitHub:<a href='https://github.com/${engineer.github}' target='_blank' rel='noreferrer'> ${engineer.github}</a></span>
+                    <span>GitHub:<a href='https://github.com/${engineer.getGithub()}' target='_blank' rel='noreferrer'> ${engineer.getGithub()}</a></span>
                 </div>
             </div>
         </div>
@@ -73,24 +74,24 @@ function createIntern(intern){
     <div class="col s4">
         <div class="card cyan lighten-3">
             <div class="card content teal lighten-5 center-align">
-                <h2 class="padding-top card-title">${internPrompts.InternName}</h2>
+                <h2 class="padding-top card-title">${internPrompts.getName()}</h2>
             </div>
             <div class="card-content">
                 <div class="card-content">
-                    <span>ID: ${intern.id}</span>
+                    <span>ID: ${intern.getId()}</span>
                 </div>
                 <div class="card-content">
-                    <span>Email:<a class='black-text' href='mailto:${intern.email}'> ${intern.email}</a></span>
+                    <span>Email:<a class='black-text' href='mailto:${intern.getEmail()}'> ${intern.getEmail()}</a></span>
                 </div>
                 <div class="card-content">
-                    <span>GitHub:<a href='https://github.com/${intern.school}' target='_blank' rel='noreferrer'> ${intern.github}</a></span>
+                    <span>GitHub:<a href='https://github.com/${intern.getSchool()}' target='_blank' rel='noreferrer'> ${intern.getGithub()}</a></span>
                 </div>
             </div>
         </div>
     </div>    
     `
 }
-
+//create an array of employees 
 function createHTMLTemplate(employees) {
     const roles = [
         {
@@ -141,4 +142,4 @@ function createHTML(employees) {
     `;
 }
 module.exports = createHTML
-    // mapEmployee, createEngineer, createIntern, createManager
+
