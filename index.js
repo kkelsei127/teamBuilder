@@ -94,7 +94,6 @@ function createEngineer(){
         const instance = new Engineer(data.EngineerName, data.EngineerID, data.EngineerEmail, data.EngineerGithub)
         //push new engineer instance into Team array
         teamArray.push(instance)
-        console.log(teamArray +'engineer')
         //push new engineer instance into Team array
         selectEmployee()
     })
@@ -108,7 +107,6 @@ function createIntern(){
         const instance = new Intern(data.InternName, data.InternID, data.InternEmail, data.InternSchool)
         //push new intern instance into Team array
         teamArray.push(instance)
-        console.log(teamArray + 'intern')
         //push new intern instance into Team array
         selectEmployee()
     })
