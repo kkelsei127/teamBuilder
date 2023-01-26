@@ -1,11 +1,12 @@
+const inquirer = require('inquirer');
+const fs = require('fs');
+
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer= require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 const roles = require('./src/roles');
-const inquirer = require('inquirer');
-const fs = require('fs');
 
 const teamArray = [];
 
@@ -35,10 +36,10 @@ const engineerPrompts = [{
     message: "What is the Engineer's name?",
     name: 'EngineerName'
 }, {
-    type:'number',
+    type:'input',
     message:"What is the Engineer's Employee ID, please enter integers only.",
     name:'EngineerID',
-    // validate: 'Please enter numbers only.'
+   
 }, {
     type:'input',
     message:"What is the Engineer's office number?",
@@ -58,10 +59,9 @@ const internPrompts = [{
     message: "What is the Intern's name?",
     name: 'InternName'
 }, {
-    type:'number',
+    type:'input',
     message:"What is the Intern's Employee ID, please enter integers only.",
-    name:'InternID',
-    // validate: 'Please enter numbers only.'
+    name:'InternID'
 }, {
     type:'input',
     message:"What is the Intern's office number?",
@@ -75,6 +75,7 @@ const internPrompts = [{
     message:"What is the Intern's school?",
     name:'InternSchool'
 },]
+
 function createManager(){
     inquirer.prompt(managerPrompts)
     .then(data => {
@@ -113,6 +114,7 @@ function createIntern(){
     })
 }
 
+//this allows the user to select an employee and pulls the selected employees prompts
 function selectEmployee(){
     inquirer.prompt([
         {

@@ -74,7 +74,7 @@ function createIntern(intern){
     <div class="col s4">
         <div class="card cyan lighten-3">
             <div class="card content teal lighten-5 center-align">
-                <h2 class="padding-top card-title">${internPrompts.getName()}</h2>
+                <h2 class="padding-top card-title">${intern.getName()}</h2>
             </div>
             <div class="card-content">
                 <div class="card-content">
@@ -84,7 +84,7 @@ function createIntern(intern){
                     <span>Email:<a class='black-text' href='mailto:${intern.getEmail()}?subject=You're doing great, sweetie!'> ${intern.getEmail()}</a></span>
                 </div>
                 <div class="card-content">
-                    <span>GitHub:<a href='https://github.com/${intern.getSchool()}' target='_blank' rel='noreferrer'> ${intern.getGithub()}</a></span>
+                    <span>GitHub:<a href='https://github.com/${intern.getSchool()}' target='_blank' rel='noreferrer'> ${intern.getSchool()}</a></span>
                 </div>
             </div>
         </div>
