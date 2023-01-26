@@ -196,31 +196,3 @@ function selectEmployee(){
 
 
 createManager()
-// function init(){
-//     inquirer.prompt(prompts)
-    
-//     .then((data) => {
-//         console.log(data)
-//         function (data) {if (data.NextEmployee === "Engineer") {
-//             inquirer.prompt(engineerPrompts)} else if
-//             (data.NextEmployee === "Intern") {
-//                     inquirer.prompt(internPrompts)
-//                 }}
-//         fs.writeFile('index.html', createTemplate(data), ()=> {
-//             console.log('success')
-//         })
-//     })
-//     .catch((error) => {
-//         if (error.isTtyError){
-//             console.log(error)
-//         } else {
-//             console.log(error)
-//         }
-//     })
-// }
-
-// init()
-
-// build html
-
-// module.exports = teamArray
