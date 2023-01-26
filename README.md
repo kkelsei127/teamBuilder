@@ -43,7 +43,8 @@ NPM
 ## Screenshots
 ![BuiltTeam](./assets/exmple.png)
 
-## Link to deployed site
+## Video Link
+https://drive.google.com/file/d/1ppeJVxBmf-O8ifADYrzQsfb12X0zQ_XT/view
 
 
 ## License
